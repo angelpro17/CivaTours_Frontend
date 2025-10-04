@@ -62,8 +62,16 @@ class ApiService {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Login failed');
+      if (response.status === 401 || response.status === 403) {
+        throw new Error('Credenciales incorrectas');
+      }
+      
+      try {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error al iniciar sesión');
+      } catch (jsonError) {
+        throw new Error('Credenciales incorrectas');
+      }
     }
 
     const data = await response.json();

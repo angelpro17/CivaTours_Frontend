@@ -27,7 +27,14 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
         navigate('/dashboard');
       }
     } catch (err: any) {
-      setError(err.message || 'Error al iniciar sesión');
+      // Mostrar mensaje de error amigable
+      if (err.message.includes('Credenciales incorrectas')) {
+        setError('Credenciales incorrectas');
+      } else if (err.message.includes('Network') || err.message.includes('fetch')) {
+        setError('Error de conexión. Verifica tu internet e intenta nuevamente');
+      } else {
+        setError('Error al iniciar sesión. Intenta nuevamente');
+      }
     } finally {
       setLoading(false);
     }
@@ -144,7 +151,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
         </div>
 
         <div className="text-center text-sm text-gray-500">
-          <p>© 2024 CivaTours. Todos los derechos reservados.</p>
+          <p>© 2025 CivaTours. Todos los derechos reservados.</p>
         </div>
       </div>
     </div>

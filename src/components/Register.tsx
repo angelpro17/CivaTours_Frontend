@@ -206,7 +206,7 @@ const Register: React.FC = () => {
         </div>
 
         <div className="text-center text-sm text-gray-500">
-          <p>© 2024 CivaTours. Todos los derechos reservados.</p>
+          <p>© 2025 CivaTours. Todos los derechos reservados.</p>
         </div>
       </div>
     </div>
